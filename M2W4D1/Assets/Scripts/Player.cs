@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 public class Player
@@ -8,27 +9,39 @@ public class Player
     private int punteggio;
 
     public void IncrementaPunteggio(int newpunteggio)
-    { 
+    {
         punteggio = newpunteggio + punteggio;
     }
     public int GetPunteggio()
     {
         return punteggio;
     }
-    public int SetPunteggio(int  punteggio)
+    public void SetPunteggio(int hp)
     {
-        if (punteggio < 0)
+        if (hp < 0)
         {
             punteggio = 0;
         }
-        return punteggio;
+        else
+        {
+            punteggio = hp;
+        }
+
     }
-    bool IsVincitore(int punteggio)
+    public bool IsVincitore()
     {
-        if ( punteggio >= 100)
+        if (punteggio >= 100)
         {
             return true;
         }
         return false;
     }
+
+    public void AttaccaNemico(Enemy nemico, int danno)
+    {
+        nemico.SubisciDanno(danno);
+        Debug.Log($" { nome } Danni inferti {danno}");
+  
+    }
 }
+   
